@@ -46,4 +46,13 @@ public class Contact {
     public void setContact_number(String contact_number) {
         this.contact_number = contact_number;
     }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "serial=" + serial +
+                ", contact_name='" + contact_name + '\'' +
+                ", contact_number='" + contact_number + '\'' +
+                '}';
+    }
 }
