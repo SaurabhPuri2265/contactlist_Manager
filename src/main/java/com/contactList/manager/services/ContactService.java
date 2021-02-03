@@ -11,7 +11,7 @@ import javax.sound.midi.Soundbank;
 import java.util.NoSuchElementException;
 
 @Service
-public class ManipulationService {
+public class ContactService {
 
     @Autowired
     ContactListRepository contactListRepository;
