@@ -3,10 +3,8 @@ package com.contactList.manager.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name="contacts")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -19,6 +17,9 @@ public class Contact {
 
     private String contact_name;
     private String contact_number;
+
+    @OneToMany(mappedBy = "customer_id")
+    private List<Order> orderList;
 
     public Contact() {
     }
