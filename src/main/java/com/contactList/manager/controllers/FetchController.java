@@ -29,8 +29,12 @@ public class FetchController {
     @RequestMapping("/findById/{id}")
     public Contact getById(@PathVariable Integer id) {
 
-        Contact contact = contactListRepository.findById(id).get();
-        return contact;
+        try {
+            Contact contact = contactListRepository.findById(id).get();
+            return contact;
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "ID entered in invalid");
+        }
     }
 
     //Get a contact by name
@@ -39,14 +43,14 @@ public class FetchController {
     public Contact getByName(@PathVariable String name)
     {
         List<Contact> existingContacts = contactListRepository.findAll();
-        System.out.println(existingContacts);
 
         for(Contact contact : existingContacts)
         {
             if(name.equals(contact.getContact_name()))
                 return contact;
         }
-        return null;
+
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"No contact with given name found");
     }
 
 
