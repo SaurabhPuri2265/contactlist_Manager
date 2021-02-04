@@ -1,30 +1,28 @@
 package com.contactList.manager.services;
 
 import com.contactList.manager.models.Contact;
-import com.contactList.manager.repositories.ContactListRepository;
+import com.contactList.manager.repositories.ContactRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.sound.midi.Soundbank;
 import java.util.NoSuchElementException;
 
 @Service
 public class ContactService {
 
     @Autowired
-    ContactListRepository contactListRepository;
+    ContactRepository contactRepository;
 
     //UpdateService to update contact details
     public void updateService(Integer id, Contact contact) throws RuntimeException
     {
-            if(contactListRepository.existsById(id))
+            if(contactRepository.existsById(id))
             {
-                Contact existingcontact = contactListRepository.getOne(id);
+                Contact existingcontact = contactRepository.getOne(id);
                 System.out.println(existingcontact);
                 BeanUtils.copyProperties(contact,existingcontact,"serial");
-                contactListRepository.saveAndFlush(existingcontact);
+                contactRepository.saveAndFlush(existingcontact);
             }
             else
                 throw new NoSuchElementException("Requested contact does not exist");
@@ -33,9 +31,9 @@ public class ContactService {
     //DeleteService to delete contact
     public void deleteService(Integer id) throws RuntimeException
     {
-        if(contactListRepository.existsById(id))
+        if(contactRepository.existsById(id))
         {
-            contactListRepository.deleteById(id);
+            contactRepository.deleteById(id);
         }
         else
             throw new NoSuchElementException("Contact already not present");

@@ -4,6 +4,6 @@ import com.contactList.manager.models.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.stereotype.Repository;
 
-public interface ContactListRepository extends JpaRepository<Contact,Integer> {
+public interface ContactRepository extends JpaRepository<Contact,Integer> {
 
 }

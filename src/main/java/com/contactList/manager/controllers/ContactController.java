@@ -1,7 +1,7 @@
 package com.contactList.manager.controllers;
 
 import com.contactList.manager.models.Contact;
-import com.contactList.manager.repositories.ContactListRepository;
+import com.contactList.manager.repositories.ContactRepository;
 import com.contactList.manager.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 public class ContactController {
 
     @Autowired
-    private ContactListRepository contactListRepository;
+    private ContactRepository contactRepository;
 
     @Autowired
     private ContactService contactService;
@@ -24,7 +24,7 @@ public class ContactController {
     //Get all the contacts in the contact list
     @GetMapping
     public List<Contact> list() {
-        return contactListRepository.findAll();
+        return contactRepository.findAll();
     }
 
     //Get a contact by id
@@ -33,7 +33,7 @@ public class ContactController {
     public Contact getById(@PathVariable Integer id) {
 
         try {
-            Contact contact = contactListRepository.findById(id).get();
+            Contact contact = contactRepository.findById(id).get();
             return contact;
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "ID entered in invalid");
@@ -45,7 +45,7 @@ public class ContactController {
     @RequestMapping("/findByName/{name}")
     public Contact getByName(@PathVariable String name)
     {
-        List<Contact> existingContacts = contactListRepository.findAll();
+        List<Contact> existingContacts = contactRepository.findAll();
 
         for(Contact contact : existingContacts)
         {
@@ -60,7 +60,7 @@ public class ContactController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createContact(@RequestBody Contact contact){
-        contactListRepository.saveAndFlush(contact);
+        contactRepository.saveAndFlush(contact);
     }
 
     //Update a contact inside the contactlist repo

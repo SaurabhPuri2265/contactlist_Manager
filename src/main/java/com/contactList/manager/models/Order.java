@@ -18,7 +18,9 @@ public class Order {
     private String order_item;
     private String order_status;
 
-    @ManyToOne()
-    private int customer_id;
+    @ManyToOne
+    @JoinColumn(name="contact_id")
+    private Contact contact;
+
 
 }
