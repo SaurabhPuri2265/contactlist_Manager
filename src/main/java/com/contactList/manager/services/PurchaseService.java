@@ -1,17 +1,11 @@
 package com.contactList.manager.services;
 
 import com.contactList.manager.models.Contact;
-import com.contactList.manager.models.Order;
 import com.contactList.manager.repositories.ContactRepository;
 import com.contactList.manager.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.parser.Entity;
-import javax.xml.ws.Response;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
