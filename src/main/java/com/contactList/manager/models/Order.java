@@ -22,5 +22,13 @@ public class Order {
     @JoinColumn(name="contact_id")
     private Contact contact;
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "order_id=" + order_id +
+                ", order_item='" + order_item + '\'' +
+                ", order_status='" + order_status + '\'' +
+                ", contact=" + contact +
+                '}';
+    }
 }

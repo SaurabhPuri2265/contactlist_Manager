@@ -27,7 +27,7 @@ public class PurchaseController {
         }
         catch (RuntimeException e)
         {
-            throw  new NoSuchElementException(e.getMessage());
+            throw  new RuntimeException(e.getMessage());
         }
     }
 

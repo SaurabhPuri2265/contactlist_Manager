@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -29,15 +28,13 @@ public class PurchaseService {
             Contact contact = requestedCustomer.get();
             return orderRepository.findByContact(contact.getSerial());
         }
-            throw new NoSuchElementException("Nothing Found");
+            throw new RuntimeException("Nothing Found");
     }
 
     //Return order status of an item of a customer
     public String getStatus(Integer id,String item)
     {
         Optional<Contact> requestedCustomer = contactRepository.findById(id);
-        if(!requestedCustomer.isPresent())
-            throw new RuntimeException("No such order of a contact");
 
         String status = orderRepository.getOrderStatus(id,item);
 
