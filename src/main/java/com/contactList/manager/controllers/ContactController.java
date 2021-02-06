@@ -23,6 +23,7 @@ public class ContactController {
 
     //Get all the contacts in the contact list
     @GetMapping
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Contact> list() {
         return contactRepository.findAll();
     }
@@ -78,7 +79,9 @@ public class ContactController {
     }
 
     //Delete a contact inside the contactlist repo
+
     @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void delete(@PathVariable Integer id)
     {
         try{
