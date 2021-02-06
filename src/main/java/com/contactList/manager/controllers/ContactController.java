@@ -31,6 +31,7 @@ public class ContactController {
     //Get a contact by id
     @GetMapping
     @RequestMapping("/findById/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Contact getById(@PathVariable Integer id) {
 
         try {
