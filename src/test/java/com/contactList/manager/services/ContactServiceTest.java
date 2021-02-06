@@ -19,6 +19,7 @@ public class ContactServiceTest {
     @InjectMocks
     ContactService contactService;
 
+
     @Mock
     ContactRepository contactRepository;
 
