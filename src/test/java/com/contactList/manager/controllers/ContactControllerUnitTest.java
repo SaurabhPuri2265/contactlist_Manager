@@ -12,13 +12,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
-
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.BDDMockito.given;
@@ -78,6 +77,20 @@ public class ContactControllerUnitTest {
                 .andExpect( jsonPath("$.contact_name", is(contact.getContact_name())));
 
 
+    }
+
+
+    @Test
+    public void delete() throws Exception{
+
+        Contact contact=new Contact();
+        contact.setSerial(1);
+        contact.setContact_name("saurabh");
+        contact.setContact_number("98421");
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/contacts/{id}",contact.getSerial())
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
 

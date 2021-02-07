@@ -82,7 +82,7 @@ public class ContactController {
     //Delete a contact inside the contactlist repo
 
     @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Integer id)
     {
         try{
