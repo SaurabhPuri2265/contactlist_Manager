@@ -88,9 +88,9 @@ public class ContactControllerUnitTest {
         contact.setContact_name("saurabh");
         contact.setContact_number("98421");
 
-        doReturn(new NoSuchElementException()).when(contactRepository).deleteById(2);
+//        doReturn(new NoSuchElementException()).when(contactRepository).deleteById(2);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("contacts/{id}",contact.getSerial())
+        mockMvc.perform(MockMvcRequestBuilders.delete("/contacts/{id}",contact.getSerial())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
